@@ -15,16 +15,16 @@ Now implement the function isValid() for both classes:
 * a scrum is valid if each team has a scrum (Check the `Team.kt` class, which now has an extra method)
 * a line out is valid if each team has the same amount of players
 
-Run the tests for SetPieces. (Do not forget to remove the `@Disabled` annotation.
+Run the tests for SetPieces (do not forget to remove the `@Disabled` annotation).
 
 
 ### b - Inheritance
 As we are building an application registering all the events in a rugby game, we will start writing events for the played set pieces.
-For this we will be using the `ApplicationEvent` from Spring: an application event has a source (object the object on which the event initially occurred) and all the data related to the event.
+For this we will be using the `ApplicationEvent` from Spring: an application event has a source (the object on which the event initially occurred) and all the data related to the event.
 
-In the file [GameEvents.kt](../src/main/kotlin/com/paulienvanalst/rugbymatch/events/GameEvents.kt) add a SetPieceEvent class *implementing ApplicationEvent from Spring*.
+In the file [GameEvents.kt](../src/main/kotlin/com/paulienvanalst/rugbymatch/events/GameEvents.kt) I have added a SetPieceEvent class *implementing ApplicationEvent from Spring*.
 Data related to this event is a SetPiece and a winning team.
-`SetPieceEvent` is the parent class of the events that will follow later in the exercise. Therefore we will make it a `sealed` class.
+`SetPieceEvent` is the parent class of the events that will follow later in the exercise. Therefore I have made it a `sealed` class.
 For more information check the [Kotlin docs](http://kotlinlang.org/docs/reference/sealed-classes.html)
 
 Now as we are playing Scrums and LineOuts, we are making two type of Events:
@@ -37,13 +37,13 @@ Note a class is by default `final`, so you need to do something to make this hap
 
 
 ### c - Extension functions
-In the near feature we want to know which set pieces where won by which team. As this statistic is a property of `List<SetPieceEvent>` we will use extention functions to implement this.
+In the near future we will want to know which set pieces where won by which team. Because these statistics are properties of `List<SetPieceEvent>` we will use extention functions to implement them.
 Extension functions can be implemented like this:
 ```kotlin
 List<SetPieceEvent>.name() : ReturnType = this.something
 ```
 
-Write two extension functions returning the set pieces won by/lost by a certain team.
+Write two extension functions returning the set pieces won/lost by a certain team.
 The interface being : `wonBy(teamName)` and `lostBy(teamName)`.
 
 More information about extension functions can be found [here](https://kotlinlang.org/docs/reference/extensions.html)
