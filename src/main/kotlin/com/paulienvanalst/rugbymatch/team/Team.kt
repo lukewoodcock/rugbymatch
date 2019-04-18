@@ -6,20 +6,25 @@ data class Team (val players: List<Player>, val name: TeamName) {
      * A team has enough players when it has at least 15 players
      */
     val hasEnoughPlayers : Boolean
-        get() = throw NotImplementedException()
+        get() = players.count() > 14
 
     /**
      * A team has substitutes when it has more than 15 players
      */
     val hasAnySubstitutes : Boolean
-        get() = throw NotImplementedException()
+        get() = players.any { !it.isStarting }
 
     /**
      * A team has enough starting players when there are at least 15 players
      * wearing back numbers 1 until 15
      */
     val hasEnoughStartingPlayers : Boolean
-        get() = throw NotImplementedException()
+        get() = players.count { it.isStarting } > 14
+
+    /**
+     * Finds the scrum half of a team and returns null if none exist
+     */
+    val scrumHalf : Player? = players.find { it.position == Position.SCRUM_HALF }
 
     /**
      * The captain, when present, should always where back number 7
@@ -27,7 +32,7 @@ data class Team (val players: List<Player>, val name: TeamName) {
      * a number 7 instead of 9 - see the Position enums
      */
     fun captainBackNumber(): Int? {
-        throw NotImplementedException()
+        return this.scrumHalf!!.backNumber
     }
 
     /**
@@ -35,7 +40,7 @@ data class Team (val players: List<Player>, val name: TeamName) {
      * the captain is wearing the first back number we can find among the starting players.
      */
     fun replacingCaptainBackNumber(): Int? {
-        throw NotImplementedException()
+        return this.scrumHalf?.backNumber ?: players.first { it.isStarting }.backNumber
     }
 
 
