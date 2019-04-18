@@ -23,6 +23,8 @@ data class Team (val players: List<Player>, val name: TeamName) {
 
     /**
      * The captain, when present, should always where back number 7
+     * #note for the purposes of these exercises, a scrum-half wears
+     * a number 7 instead of 9 - see the Position enums
      */
     fun captainBackNumber(): Int? {
         throw NotImplementedException()
